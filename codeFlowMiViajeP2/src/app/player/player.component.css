@@ -1,0 +1,19 @@
+    /* Estilos para el contenedor de video */
+.contendor-video {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+    
+    /* Estilos para elementos de video */
+.video {
+    text-align: center;
+    padding: 20px; 
+    margin-left: 100px;
+}
+
+.imagen {
+    max-width: 400px; /* Establece el ancho máximo */
+    height: auto; /* Mantiene la relación de aspecto */
+    object-fit: contain;
+}

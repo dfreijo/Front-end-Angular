@@ -1,0 +1,29 @@
+<!-- Verifica si el día no es nulo antes de mostrar el contenido -->
+<div *ngIf="day !== null">
+  <div class="contenedor">
+    <div class="izquierda">    
+      <!-- Muestra la descripción del día de viaje. -->
+      <p>{{ day.description }}</p>
+      <!-- Muestra el alojamiento para ese día de viaje. -->
+      <p><strong>Alojamiento:</strong> {{ day.accomodation }}</p>
+      <!-- Muestra las actividades de interés. -->
+      <p><strong>Actividades de interés:</strong></p>
+      <ul>
+        <!-- Inicio de la lista para las actividades. -->
+        <li *ngFor="let activity of day.activities">{{ activity }}</li>
+      </ul>
+    </div>
+
+    <div class="derecha">
+      <!-- Contiene el reproductor de video. -->
+      <div class="contendor-video">
+        <app-player *ngIf="day" [day]="day"></app-player>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

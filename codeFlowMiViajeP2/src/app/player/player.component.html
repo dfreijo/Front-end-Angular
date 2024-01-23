@@ -1,0 +1,19 @@
+<head>
+    <meta charset="UTF-8">
+    <!-- Configura la vista en dispositivos móviles: adapta el ancho al ancho del dispositivo y establece el nivel de escala inicial en 1.0. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="dato">
+      <div class="video" *ngIf="isVideo(day?.video)">
+          <video width="640" height="360" controls>
+              <source [src]="day?.video" type="video/mp4">
+          </video>
+      </div>
+      <div class="imagen" *ngIf="isImage(day?.video)">
+          <img src="{{ day?.video }}" class="img-fluid" alt="Descripción de la imagen">
+      </div>
+  </div>
+</body>
+
+

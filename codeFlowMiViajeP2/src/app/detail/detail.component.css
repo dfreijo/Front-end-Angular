@@ -1,0 +1,32 @@
+    /* Estilos para el contenedor principal */
+.contenedor {
+    margin-left: 68px;
+    margin-top: -20px;
+    width: 1400px;
+    display: flex;
+    flex-direction: row;
+}
+
+    /* Estilos para la parte izquierda del contenedor */
+.izquierda {
+    flex: 1; 
+    padding: 20px; 
+}
+
+   /* Estilos para la parte derecha del contenedor */
+.derecha {
+    flex: 1; 
+    padding: 20px; 
+    
+}
+
+    /* Estilos para párrafos y listas */
+p, li {
+    color: #565656; 
+    font-family: Montserrat; 
+    font-size: 15px; 
+    font-style: normal; 
+    font-weight: 400; 
+    line-height: normal; 
+}
+

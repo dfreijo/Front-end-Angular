@@ -1,0 +1,287 @@
+/* Estilos para el contendor de la lista */
+.list-container{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    margin-top: 100px;
+    z-index: 0;
+}
+
+/* Estilos para el título "h2" */
+h2 {
+    margin-left: 100px;
+    color: #565656;
+    text-align: left;
+    font: 700 40px "Montserrat", sans-serif;   
+}
+
+/* Estilos para la lista de días "city-list" */
+.city-list {
+    margin-left: 140px;
+    margin-top: 25px;
+    color: #565656;
+    text-align: left;
+    font: 500 30px "Montserrat", sans-serif;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 1.6;
+}
+
+/* Estilos para los botones en la lista de días */
+.city-list button {
+    background: none; 
+    border: none; 
+    display: flex;
+    align-items: center;
+    cursor: pointer; 
+    margin-bottom: 10px; 
+}
+
+/* Estilos para el ícono de día "day-symbol" en la lista de días */
+.city-list .day-symbol {
+    width: 25px; /* Ancho fijo para el icono */
+    margin-left: 1px;
+    margin-right: 55px; 
+    font: 700 40px "Montserrat";
+}
+
+/* Estilos para el ícono de ciudad "city-symbol" en la lista de días */
+.city-list .city-symbol {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Estilos para el botón agregar */
+.boton-agregar {
+    max-width: 100px;
+    margin-left: 140px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font: 400 17px "Montserrat", sans-serif;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: none;
+    background-color: #565656;
+    color: white;
+
+}
+
+/* Estilos formulario */
+form[name="newItem"].custom-form {
+    max-width: 1500px;
+    margin-left: 140px;
+    margin-right: 140px;
+    padding: 40px;
+    background-color: #565656;
+    color: white;
+    border-radius: 10px;   
+}
+
+/* Estilos para el boton de enviar */
+.boton-enviar {
+    max-width: 100px;
+    font: 400 17px "Montserrat", sans-serif;
+    margin-top: 20px;
+    font: 400 17px "Montserrat", sans-serif;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: none;
+    background-color: #ffffff;
+    color:  #565656;
+
+}
+
+/* Estilos para el contenedor de los botones */
+.city-info {
+    display: flex;
+}
+
+/* Estilos para el boton editar */
+.boton-editar {
+    font-size: 17px;
+    margin-left: 50px;
+}
+
+/* Estilos para el boton eliminar */
+.boton-eliminar {
+    font-size: 17px;
+    margin-left: 10px;
+}
+
+/* modal.component.css */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+  
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
+
+.closeModal {
+    float: right;
+}
+
+/* FILTROS */
+
+.filter-container {
+    display: flex; /* Asegura que los elementos estén en línea */
+    justify-content: flex-end; /* Alinea el contenido hacia la parte superior y la derecha */ 
+    margin-top: 10px; 
+    margin-right: 80px; 
+    margin-top: 30px;
+    font: 600 20px "Montserrat";
+}
+
+/* Estilos para imágenes dentro de elementos con la clase .filter-container */
+.filter-container img {
+    margin-right: 10px; /* Espacio a la derecha de la imagen */
+    width: 25px; /* Ancho de la imagen */
+    height: 27px; /* Altura de la imagen */
+}
+
+/* Estilos para el botón de filtro */
+.filter-button {
+    display: flex; /* Muestra el botón como elemento en línea */
+    align-items: center; /* Alinea el contenido verticalmente al centro del botón */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse por encima para indicar interactividad */
+    background: none; /* Elimina el fondo del botón */
+    border: none; /* Elimina el borde del botón */
+    z-index: 3;
+}
+
+/* Estilos para el ícono de flecha en el botón de filtro */
+.arrow-icon {
+    font-size: 20px; /* Tamaño del ícono de flecha */
+    margin-left: 10px; /* Espacio a la izquierda del ícono */
+    transition: transform 0.3s; /* Agrega una transición suave para la rotación de la flecha */
+}
+
+/* Estilos para la rotación de la flecha en el botón de filtro cuando está abierto */
+.arrow-icon.rotate-right {
+    transform: rotate(-90deg); /* Rota la flecha -90 grados hacia la derecha */
+}
+
+/* Estilos para la rotación de la flecha en el botón de filtro cuando está cerrado */
+.arrow-icon.rotate-down {
+    transform: rotate(0deg); /* Rota la flecha 0 grados */
+}
+
+/* Estilos para el fondo oscuro */
+.background-overlay {
+    position: absolute; 
+    top: 130px; /* Comienza desde la parte superior de la página */
+    right: 500px; /* Comienza desde la parte derecha de la página */
+    width: 100%; /* Ancho al 100% de la ventana */
+    height: 120%; /* Altura al 100% de la ventana */
+    background: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro con opacidad del 50% */
+    z-index: 1; /* Capa z en 1 para estar detrás del menú emergente */
+}
+
+/* Estilos para el menú emergente */
+.dropdown-content {
+    background: #ffffff; /* Fondo blanco para el menú */
+    width: 500px; /* Ancho fijo del menú */
+    height: 120%; /* Altura fija del menú */
+    position: absolute; /* Posición fija para mantenerlo en su lugar */
+    top: 130px; /* Alinea el menú en la parte superior de la página */
+    right: 0; /* Alinea el menú en el lado derecho de la página */
+    z-index: 2; /* Capa z en 2 para estar por encima del fondo oscuro */
+    box-sizing: border-box; /* La caja del menú incluye bordes y rellenos en el tamaño */
+}
+
+/* Estilos para el contenido del menú emergente */
+.fixed-size-dropdown {
+    margin-left: 50px; 
+    margin-right: 50px;
+    text-align: left; 
+}
+
+/* Estilos para el bcontenedor del search */
+.search-container {
+    margin-top: 150px;
+    width: 100%; 
+    height: 33px;
+    font: 300 14px "Montserrat", sans-serif;
+    text-align: left;
+
+}
+
+/* Estilos para la entrada de texto en el menú emergente */
+.search-container input[type="text"] {
+    min-width: 300px;
+    height: 33px;
+    font: 300 14px "Montserrat", sans-serif;
+    text-align: left;
+    padding-left: 10px;
+}
+
+/* Estilo para el texto que se escribe en el buscador */
+.search-container input[type="text"]:not(:placeholder-shown){
+    font-weight: 600; 
+}
+
+/* Estilos para el bcontenedor del dropdown */
+.dropdown-container {
+    margin-top: 110px; 
+    height: 50px;
+    font: 300 14px "Montserrat", sans-serif;
+    text-align: left;
+}
+
+/* Estilos para el selector de dias */
+.selectedDay {
+    margin-top: 0px; 
+    height: 33px;
+    min-width: 300px;
+    font: 300 14px "Montserrat", sans-serif;
+    text-align: left;
+}
+
+/* Estilos para el botón de reinicio filtros */
+.reset-button {
+    width: 204px;
+    height: 30px;
+    margin-top: 150px;
+    margin-bottom: auto;
+    border-radius: 10px;
+    background: #cc3131;
+    text-align: center;
+    color: #ffffff;
+    font: 500 15px 'Montserrat', sans-serif;
+    position: relative;
+    cursor: pointer; /* Muestra un cursor de selección al pasar el mouse por encima */
+    border: none; /* Elimina el borde del botón */
+}

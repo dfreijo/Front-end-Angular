@@ -1,0 +1,155 @@
+<div class="filter-container">
+  <!-- Botón que activa el menú desplegable -->
+  <button (click)="toggleDropdown()" class="filter-button">
+     
+  <!-- Icono de filtro -->
+  <img src="assets/Images/IconoFiltro.png" alt="Icon Filter">
+  Filtros 
+    
+    <!-- Icono de flecha que rota según el estado del menú desplegable -->
+    <span class="arrow-icon" [class.rotate-right]="dropdownOpen" [class.rotate-down]="!dropdownOpen">&#9660;</span>
+    </button> 
+
+    <!-- Capa de fondo oscuro que se muestra cuando el menú está abierto y cierra el menú al hacer clic en ella -->
+    <div class="background-overlay" [hidden]="!dropdownOpen" (click)="closeDropdown()"></div>
+ 
+    <!-- Contenedor del menú emergente -->
+    <div class="dropdown-content" [hidden]="!dropdownOpen">
+ 
+    <!-- Contenido de la ventana desplegable con tamaño fijo -->
+    <div class="fixed-size-dropdown">
+    
+      <!-- Contenedor de la barra de búsqueda -->
+      <div class="search-container">
+        <p>Buscar por ciudad</p>
+        <input type="text" [(ngModel)]="filterValue" id="filterValue" placeholder="Búsqueda">
+      </div>
+      <!-- Contenedor del selector dropdown -->
+      <div class="dropdown-container">
+        <p>Buscar por dia</p>
+        <select class="selectedDay" (change)="onDaySelected($event)" title="desplegable">
+          <option value="" disabled selected>Selecciona un día</option>
+          <option *ngFor="let city of cities" [value]="city.day">{{ city.day }}</option>
+        </select>
+      </div>
+      <!-- Boton reset filtros -->
+      <button (click)="resetFilters()" class="reset-button">Restablecer filtros</button>
+    </div>
+  </div>
+</div> 
+
+<!-- Formulario editar -->
+<div class="modal" [ngClass]="{'show': showModal}">
+  <div class="modal-content">
+      <span class="d-flex justify-content-end" (click)="closeModal()"><i class="fa fa-close"></i></span>
+        <form (ngSubmit)="onSubmitEditar()" [formGroup]="formularioEditar" class="my-4 custom-form" name="newItem">
+          <div class="mb-3">
+            <label class="form-label">Ciudad</label>
+            <input type="text" class="form-control" formControlName="name" title="Nombre" 
+            placeholder="{{cityEdit?.name}}">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Día</label>
+            <input type="number" class="form-control" formControlName="day" title="dia" 
+            placeholder="{{cityEdit?.day}}">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" cols="5" rows="5" formControlName="description" title="Descripcion"
+            placeholder="{{cityEdit?.description}}"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Alojamiento</label>
+            <input type="text" class="form-control" formControlName="accomodation" title="Alojamiento" 
+            placeholder="{{cityEdit?.accomodation}}">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Actividades</label>
+            <textarea class="form-control" cols="5" rows="5" formControlName="activities" title="Actividades" 
+            placeholder="{{cityEdit?.activities}}"></textarea>
+          </div>  
+          <div class="mb-3">
+            <input type="hidden" class="form-control" formControlName="video" title="Video"
+            placeholder="{{cityEdit?.video}}">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Video</label>
+            <input type="file" class="form-control" (change)="onVideoSelectedEditar($event)" formControlName="videoSubido" title="Video" >
+          </div>
+          <button type="button" class="boton-enviar" (click)="onSubmitEditar()">Editar</button>
+        </form>
+  </div>
+</div>
+
+<div class="list-container">
+  <h2>Itinerario del viaje</h2>
+  <!-- Contenedor de la lista de ciudades -->
+  <div class="city-list">
+    <!-- Iteración sobre la lista de ciudades -->
+    <div class="city" *ngFor="let city of filteredCities | searchFilter: filterValue | dropdownFilter: selectedDay"> 
+      <!-- Contenedor de información de cada ciudad -->
+      <div class="city-info">
+        <!-- Botón para mostrar/ocultar detalles -->
+        <button (click)="showDetails(city)">
+          <span class="day-symbol">{{ selectedCity === city ? '-' : '+' }}</span>Día {{ city.day }}
+          <span class="city-symbol">-</span>{{ city.name | uppercase }}
+        </button>
+        <button class="boton-editar" (click)="openModal(city)" title="Editar"><i class="fa fa-edit"></i></button>
+        <button class="boton-eliminar" (click)="eliminarDia(city)" title="Eliminar"><i class="fa fa-trash"></i></button>
+      </div> 
+      <div *ngIf="selectedCity === city" class="details">
+      <app-detail *ngIf="selectedCity" [day]="selectedCity"></app-detail>
+    </div>
+  </div> 
+</div>
+
+<button class="boton-agregar" (click)="toggleForm()">Agregar</button>
+<div *ngIf="showForm">
+  <!-- Formulario para crear item-->
+  <form (ngSubmit)="onSubmit()" [formGroup]="formulario" class="my-4 custom-form" name="newItem">
+    <div class="mb-3">
+      <label class="form-label">Ciudad</label>
+      <input type="text" class="form-control" formControlName="name" title="Nombre" required>
+      <div *ngIf="formulario.get('name')?.hasError('required') && formulario.get('name')?.touched">
+        El campo Ciudad es obligatorio.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Día</label>
+      <input type="number" class="form-control" formControlName="day" title="dia" required>
+      <div *ngIf="formulario.get('day')?.hasError('required') && formulario.get('day')?.touched">
+        El campo Día es obligatorio.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Descripción</label>
+      <textarea class="form-control" cols="5" rows="5" formControlName="description" title="Descripcion"required></textarea>
+      <div *ngIf="formulario.get('description')?.hasError('required') && formulario.get('description')?.touched">
+        El campo Descripción es obligatorio.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Alojamiento</label>
+      <input type="text" class="form-control" formControlName="accomodation" title="Alojamiento" required>
+      <div *ngIf="formulario.get('accomodation')?.hasError('required') && formulario.get('accomodation')?.touched">
+        El campo Alojamiento es obligatorio.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Actividades</label>
+      <textarea class="form-control" cols="5" rows="5" formControlName="activities" title="Actividades" required
+                placeholder="Separa las actividades por comas (Ejemplo: Actividad 1, Actividad 2, etc)"></textarea>
+      <div *ngIf="formulario.get('activities')?.hasError('required') && formulario.get('activities')?.touched">
+        El campo Actividades es obligatorio.
+      </div>
+    </div>  
+    <div class="mb-3">
+      <label class="form-label">Video</label>
+      <input type="file" class="form-control" (change)="onVideoSelected($event)" formControlName="video" title="Video" >
+    </div>
+    <div class="error-message" *ngIf="showErrorMessage">
+      Por favor, rellena todos los campos.
+    </div>
+    <button type="button" class="boton-enviar" (click)="onSubmit()">Enviar</button>
+  </form>
+</div>
